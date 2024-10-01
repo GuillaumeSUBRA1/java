@@ -5,17 +5,21 @@ import java.util.List;
 
 public class list {
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
+        System.out.println("##### liste de 20 nombres entiers #####\n");
+        List<Integer> integers = new ArrayList<>();
         for (int i = 0; i <= 20; i++) {
-            list.add(i);
+            integers.add(i);
         }
-        even(list);
-        odd(list);
-        multiple_of(list, 3);
-        multiple_of(list, 4);
-        multiple_of(list, 5);
-        mean(list);
-        sum(list);
+        even(integers);
+        odd(integers);
+        multiple_of(integers, 3);
+        multiple_of(integers, 4);
+        multiple_of(integers, 5);
+        mean(integers);
+        sum(integers);
+        reverse(integers);
+        separateInTwo(integers);
+        System.out.println("##### liste de 20 nombres entiers #####\n");
     }
 
     public static void even(List<Integer> l) {
@@ -37,5 +41,14 @@ public class list {
 
     public static void sum(List<Integer> l) {
         System.out.println("somme des items de la liste = " + l.stream().mapToInt(i -> i).sum());
+    }
+
+    public static <T> void reverse(List<T> l) {
+        System.out.println("liste inversée = " + l.reversed());
+    }
+
+    public static <T> void separateInTwo(List<T> l) {
+        System.out.println("liste moitié 1 = " + l.subList(0, l.size() / 2) + " | liste moitié 2 = "
+                + l.subList(l.size() / 2, l.size()));
     }
 }

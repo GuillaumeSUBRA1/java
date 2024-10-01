@@ -19,6 +19,8 @@ public class list {
         multiple_of(list, 5);
         mean(list);
         sum(list);
+        reverse(list);
+        separateInTwo(list);
     }
 
     public static void size(List<Integer> l) {
@@ -77,5 +79,33 @@ public class list {
             s += l.get(i);
         }
         System.out.println("somme des items de la liste = " + s);
+    }
+
+    public static <T> void reverse(List<T> l) {
+        List<T> list = new ArrayList<>(l);
+        int size = l.size();
+        for (int i = 0; i < size / 2; i++) {
+            T t = list.get(i);
+            list.set(i, list.get(size - 1 - i));
+            list.set(size - 1 - i, t);
+        }
+        System.out.println("liste inversée = " + list);
+    }
+
+    public static <T> void separateInTwo(List<T> l) {
+        List<T> first = new ArrayList<>();
+        List<T> second = new ArrayList<>();
+        int size = l.size();
+        int mid = size / 2;
+
+        for (int i = 0; i < size; i++) {
+            if (i < mid) {
+                first.add(l.get(i));
+            } else {
+                second.add(l.get(i));
+            }
+        }
+
+        System.out.println("liste moitié 1 = " + first + " | liste moitié 2 = " + second);
     }
 }
