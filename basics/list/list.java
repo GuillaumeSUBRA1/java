@@ -12,6 +12,8 @@ public class list {
         size(list);
         first(list);
         last(list);
+        min(list);
+        max(list);
         even(list);
         odd(list);
         multiple_of(list, 3);
@@ -33,6 +35,26 @@ public class list {
 
     public static void last(List<Integer> l) {
         System.out.println("dernier item de la liste = " + l.getLast());
+    }
+
+    public static void min(List<Integer> l) {
+        int min = l.getFirst();
+        for (int i = 0; i < l.size(); i++) {
+            if (min > l.get(i)) {
+                min = l.get(i);
+            }
+        }
+        System.out.println("plus petit item de la liste = " + min);
+    }
+
+    public static void max(List<Integer> l) {
+        int max = l.getFirst();
+        for (int i = 0; i < l.size(); i++) {
+            if (max < l.get(i)) {
+                max = l.get(i);
+            }
+        }
+        System.out.println("plus grand item de la liste = " + max);
     }
 
     public static void even(List<Integer> l) {

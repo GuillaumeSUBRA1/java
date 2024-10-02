@@ -1,6 +1,7 @@
 package advanced;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class list {
@@ -12,6 +13,8 @@ public class list {
         }
         even(integers);
         odd(integers);
+        min(integers);
+        max(integers);
         multiple_of(integers, 3);
         multiple_of(integers, 4);
         multiple_of(integers, 5);
@@ -28,6 +31,14 @@ public class list {
 
     public static void odd(List<Integer> l) {
         System.out.println("tous les items impairs de la liste = " + l.stream().filter((i) -> i % 2 == 1).toList());
+    }
+
+    public static void min(List<Integer> l) {
+        System.out.println("plus petit item de la liste = " + Collections.min(l));
+    }
+
+    public static void max(List<Integer> l) {
+        System.out.println("plus grand item de la liste = " + Collections.max(l));
     }
 
     public static void multiple_of(List<Integer> l, int x) {
