@@ -1,0 +1,51 @@
+* {
+    -fx-text-fill: white;
+}
+
+.root {
+    -fx-background-color: #091427;
+}
+
+.calculation-label {
+    -fx-pref-width: 17.5em;
+    -fx-alignment: center-right;
+    -fx-font-size: 2em;
+    -fx-background-radius: .2em;
+    -fx-padding: .15em;
+    -fx-background-color: rgba(0, 153, 255, 0.205);
+}
+
+.output-label {
+    -fx-pref-width: 7em;
+    -fx-alignment: center-right;
+    -fx-font-size: 5em;
+    -fx-background-radius: .2em;
+    -fx-padding: .2em .2em 0 0;
+    -fx-background-color: rgba(0, 153, 255, 0.205);
+}
+
+.button {
+    -fx-min-width: 4.4em;
+    -fx-min-height: 2.5em;
+    -fx-font-size: 2em;
+    -fx-background-radius: .5em;
+    -fx-background-color: rgba(30, 23, 99, 0.781);
+    -fx-background-insets: 5 5 5 5;
+}
+
+.button:hover {
+    -fx-opacity: .8;
+    -fx-cursor: pointer;
+}
+
+.button:pressed {
+    -fx-opacity: .5;
+}
+
+.button-action-color{
+    -fx-background-color: #4196db;
+}
+
+.button-delete{
+    -fx-background-color: red;
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+
+<AnchorPane prefWidth="435" prefHeight="560" fx:controller="com.example.CalculatorController" xmlns:fx="http://javafx.com/fxml">
+   <stylesheets>
+      <URL value="@../example/style.css"/>
+   </stylesheets>
+
+   <Label fx:id="calculationLabel" styleClass="calculation-label" AnchorPane.topAnchor="40" AnchorPane.leftAnchor="7"/>
+   <Label fx:id="outputLabel" styleClass="output-label" text="0" AnchorPane.topAnchor="90" AnchorPane.leftAnchor="7"/>
+   <GridPane AnchorPane.topAnchor="200" AnchorPane.leftAnchor="5">
+      <!--ROW 1-->
+      <Button text="\%" onAction="#handleUnary" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="button-action-color"/>
+      <Button text="CE" onAction="#onPressed" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="button-action-color"/>
+      <Button text="C" onAction="#onPressed" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="button-action-color"/>
+      <Button text="⌫" onAction="#onPressed" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="button-delete"/>
+      <!--ROW 2-->
+      <Button text="1/x" onAction="#handleUnary" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="button-action-color"/>
+      <Button text="x^2" onAction="#handleUnary" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="button-action-color"/>
+      <Button text="rac" onAction="#handleUnary" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="button-action-color"/>
+      <Button text="/" onAction="#handleBinary" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="button-action-color"/>
+      <!--ROW 3-->
+      <Button text="7" onAction="#handleNumber" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+      <Button text="8" onAction="#handleNumber" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+      <Button text="9" onAction="#handleNumber" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+      <Button text="x" onAction="#handleBinary" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="button-action-color"/>
+      <!--ROW 4-->
+      <Button text="4" onAction="#handleNumber" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+      <Button text="5" onAction="#handleNumber" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+      <Button text="6" onAction="#handleNumber" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+      <Button text="-" onAction="#handleBinary" GridPane.rowIndex="3" GridPane.columnIndex="3" styleClass="button-action-color"/>
+      <!--ROW 5-->
+      <Button text="1" onAction="#handleNumber" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+      <Button text="2" onAction="#handleNumber" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+      <Button text="3" onAction="#handleNumber" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+      <Button text="+" onAction="#handleBinary" GridPane.rowIndex="4" GridPane.columnIndex="3" styleClass="button-action-color"/>
+      <!--ROW 6-->
+      <Button text="+/-" onAction="#handleUnary" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="button-action-color"/>
+      <Button text="0" onAction="#handleNumber" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+      <Button text="." onAction="#handleDot" GridPane.rowIndex="5" GridPane.columnIndex="2" styleClass="button-action-color"/>
+      <Button text="=" onAction="#handleEqual" GridPane.rowIndex="5" GridPane.columnIndex="3" styleClass="button-action-color"/>
+   </GridPane>
+</AnchorPane>
