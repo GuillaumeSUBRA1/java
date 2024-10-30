@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class Fenetre extends JFrame implements ActionListener {
 
@@ -11,9 +12,9 @@ public class Fenetre extends JFrame implements ActionListener {
     Float xmin, ymin, xmax, ymax, pas;
 
     JPanel coordonnees = new JPanel();
-    JPanel action = new JPanel();
     JPanel grapher = new JPanel();
     JPanel evaluation = new JPanel();
+    JPanel action = new JPanel();
 
     // composants NORTH
     JLabel x = new JLabel("x = ");
@@ -25,6 +26,9 @@ public class Fenetre extends JFrame implements ActionListener {
     JTextArea fonctionText = new JTextArea(0, 6);
 
     // composants WEST
+    GridBagLayout grid = new GridBagLayout();
+    GridBagConstraints bag = new GridBagConstraints();
+
     JLabel xminLabel = new JLabel("x min");
     JLabel xmaxLabel = new JLabel("x max");
     JLabel yminLabel = new JLabel("y min");
@@ -42,18 +46,15 @@ public class Fenetre extends JFrame implements ActionListener {
     JTextArea ygridText = new JTextArea(1, 10);
 
     JButton refresh = new JButton("Refresh");
-    JButton zoomPlus = new JButton("+");
-    JButton zoomMoins = new JButton("-");
 
     JButton eval = new JButton("Evaluate");
     JLabel fonctionEval = new JLabel("f(x) = ");
     JTextArea fonctionEvalText = new JTextArea(0, 30);
 
-    int coordonneeHeight = 30;
-
     public Fenetre() {
         super("Grapheur");
         setSize(1200, 1200);
+        setLocation(50, 50);
         setVisible(true);
 
         coordonnees.add(x);
@@ -70,46 +71,52 @@ public class Fenetre extends JFrame implements ActionListener {
         ymaxText.setText("10");
         pasText.setText("0.1");
 
-        action.setLayout(null);
-        action.setPreferredSize(new Dimension(120, 800));
-        xminLabel.setBounds(5, 5, 50, coordonneeHeight);
-        xmaxLabel.setBounds(5, coordonneeHeight + 5, 50, coordonneeHeight);
-        yminLabel.setBounds(5, coordonneeHeight * 2 + 5, 50, coordonneeHeight);
-        ymaxLabel.setBounds(5, coordonneeHeight * 3 + 5, 50, coordonneeHeight);
-        pasLabel.setBounds(5, coordonneeHeight * 4 + 5, 50, coordonneeHeight);
-        xgridLabel.setBounds(5, coordonneeHeight * 5 + 5, 50, coordonneeHeight);
-        ygridLabel.setBounds(5, coordonneeHeight * 6 + 5, 50, coordonneeHeight);
-        zoomPlus.setBounds(5, 215, 50, 20);
-        refresh.setBounds(5, 245, 100, 20);
-        xminText.setBounds(55, 5, 50, coordonneeHeight);
-        xmaxText.setBounds(55, coordonneeHeight + 5, 50, coordonneeHeight);
-        yminText.setBounds(55, coordonneeHeight * 2 + 5, 50, coordonneeHeight);
-        ymaxText.setBounds(55, coordonneeHeight * 3 + 5, 50, coordonneeHeight);
-        pasText.setBounds(55, coordonneeHeight * 4 + 5, 50, coordonneeHeight);
-        xgridText.setBounds(55, coordonneeHeight * 5 + 5, 50, coordonneeHeight);
-        ygridText.setBounds(55, coordonneeHeight * 6 + 5, 50, coordonneeHeight);
-        zoomMoins.setBounds(55, 215, 50, 20);
-        zoomPlus.setBackground(new Color(0, 120, 255));
-        zoomMoins.setBackground(new Color(0, 120, 255));
-        refresh.setBackground(new Color(0, 120, 255));
+        int[] widths = new int[2];
+        widths[0] = 150;
+        widths[1] = 150;
+        grid.columnWidths=widths;
+        action.setLayout(grid);
+        action.setBorder(new EmptyBorder(5, 5, 5, 5));
+        action.setPreferredSize(new Dimension(300, 800));
+        bag.insets = new Insets(5, 5, 5, 5);
+        bag.fill = GridBagConstraints.HORIZONTAL;
 
-        action.add(refresh);
-        action.add(xminLabel);
-        action.add(xminText);
-        action.add(xmaxLabel);
-        action.add(xmaxText);
-        action.add(yminLabel);
-        action.add(yminText);
-        action.add(ymaxLabel);
-        action.add(ymaxText);
-        action.add(pasLabel);
-        action.add(pasText);
-        action.add(xgridLabel);
-        action.add(xgridText);
-        action.add(ygridLabel);
-        action.add(ygridText);
-        action.add(zoomPlus);
-        action.add(zoomMoins);
+        bag.gridx = 0;
+        bag.gridy = 0;
+        action.add(xminLabel, bag);
+        bag.gridy = 1;
+        action.add(xmaxLabel, bag);
+        bag.gridy = 2;
+        action.add(yminLabel, bag);
+        bag.gridy = 3;
+        action.add(ymaxLabel, bag);
+        bag.gridy = 4;
+        action.add(xgridLabel, bag);
+        bag.gridy = 5;
+        action.add(ygridLabel, bag);
+        bag.gridy = 6;
+        action.add(pasLabel, bag);
+
+        bag.gridx = 1;
+        bag.gridy = 0;
+        action.add(xminText, bag);
+        bag.gridy = 1;
+        action.add(xmaxText, bag);
+        bag.gridy = 2;
+        action.add(yminText, bag);
+        bag.gridy = 3;
+        action.add(ymaxText, bag);
+        bag.gridy = 4;
+        action.add(ygridText, bag);
+        bag.gridy = 5;
+        action.add(xgridText, bag);
+        bag.gridy = 6;
+        action.add(pasText, bag);
+
+        bag.gridx = 0;
+        bag.gridy = 7;
+        bag.gridwidth = 2;
+        action.add(refresh, bag);
         action.setBackground(new Color(0, 153, 255));
 
 
