@@ -13,7 +13,6 @@ public class Fenetre extends JFrame implements ActionListener {
 
     JPanel coordonnees = new JPanel();
     JPanel grapher = new JPanel();
-    JPanel evaluation = new JPanel();
     JPanel action = new JPanel();
 
     // composants NORTH
@@ -70,7 +69,28 @@ public class Fenetre extends JFrame implements ActionListener {
         }
     };
 
-    JButton eval = new JButton("Evaluate");
+    JButton eval = new JButton("Evaluate") {
+        @Override
+        protected void paintComponent(Graphics g) {
+            g.setColor(getBackground());
+            g.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+            super.paintComponent(g);
+        }
+
+        @Override
+        protected void paintBorder(Graphics g) {
+            g.setColor(getBackground());
+            g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 30, 30);
+        }
+
+        @Override
+        public void updateUI() {
+            super.updateUI();
+            setContentAreaFilled(false);
+            setFocusPainted(false);
+            setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        }
+    };
     JLabel fonctionEval = new JLabel("f(x) = ");
     JTextArea fonctionEvalText = new JTextArea(0, 30);
 
@@ -88,7 +108,7 @@ public class Fenetre extends JFrame implements ActionListener {
         coordonnees.add(fonctionText);
         coordonnees.setBackground(new Color(94, 31, 255));
 
-        refresh.setBackground(new Color(94, 31, 255));
+        refresh.setBackground(new Color(0, 120, 255));
         refresh.setFont(new Font("Arial", Font.BOLD, 12));
 
         xminText.setText("-10");
@@ -153,17 +173,26 @@ public class Fenetre extends JFrame implements ActionListener {
         bag.gridx = 0;
         bag.gridy = 8;
         bag.gridwidth = 2;
+
         action.add(new JSeparator(), bag);
+
+        bag.gridx = 0;
+        bag.gridy = 10;
+        action.add(fonctionEval, bag);
+        bag.gridx = 1;
+        fonctionEvalText.setMargin(padding);
+        action.add(fonctionEvalText, bag);
+
+        bag.gridx = 0;
+        bag.gridwidth = 2;
+        bag.gridy = 11;
+        action.add(eval, bag);
 
 
         refresh.addActionListener(this);
 
         fonctionEvalText.setText("x*2+2");
         eval.setBackground(new Color(0, 120, 255));
-        evaluation.add(eval);
-        evaluation.add(fonctionEval);
-        evaluation.add(fonctionEvalText);
-        evaluation.setBackground(new Color(94, 31, 255));
 
         float min = Float.parseFloat(xminText.getText());
         float max = Float.parseFloat(xmaxText.getText());
@@ -176,7 +205,6 @@ public class Fenetre extends JFrame implements ActionListener {
 
         this.getContentPane().add(coordonnees, BorderLayout.NORTH);
         this.getContentPane().add(action, BorderLayout.WEST);
-        this.getContentPane().add(evaluation, BorderLayout.SOUTH);
         this.getContentPane().add(grapher, BorderLayout.CENTER);
 
         pack();
