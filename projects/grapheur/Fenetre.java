@@ -45,7 +45,30 @@ public class Fenetre extends JFrame implements ActionListener {
     JTextArea xgridText = new JTextArea(1, 10);
     JTextArea ygridText = new JTextArea(1, 10);
 
-    JButton refresh = new JButton("Refresh");
+    Insets padding = new Insets(2, 5, 2, 2);
+
+    JButton refresh = new JButton("Refresh") {
+        @Override
+        protected void paintComponent(Graphics g) {
+            g.setColor(getBackground());
+            g.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+            super.paintComponent(g);
+        }
+
+        @Override
+        protected void paintBorder(Graphics g) {
+            g.setColor(getBackground());
+            g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 30, 30);
+        }
+
+        @Override
+        public void updateUI() {
+            super.updateUI();
+            setContentAreaFilled(false);
+            setFocusPainted(false);
+            setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        }
+    };
 
     JButton eval = new JButton("Evaluate");
     JLabel fonctionEval = new JLabel("f(x) = ");
@@ -65,20 +88,28 @@ public class Fenetre extends JFrame implements ActionListener {
         coordonnees.add(fonctionText);
         coordonnees.setBackground(new Color(94, 31, 255));
 
+        refresh.setBackground(new Color(94, 31, 255));
+        refresh.setFont(new Font("Arial", Font.BOLD, 12));
+
         xminText.setText("-10");
+        xminText.setMargin(padding);
         xmaxText.setText("10");
+        xmaxText.setMargin(padding);
         yminText.setText("-10");
+        yminText.setMargin(padding);
         ymaxText.setText("10");
+        ymaxText.setMargin(padding);
         pasText.setText("0.1");
+        pasText.setMargin(padding);
 
         int[] widths = new int[2];
         widths[0] = 150;
         widths[1] = 150;
-        grid.columnWidths=widths;
+        grid.columnWidths = widths;
         action.setLayout(grid);
         action.setBorder(new EmptyBorder(5, 5, 5, 5));
         action.setPreferredSize(new Dimension(300, 800));
-        bag.insets = new Insets(5, 5, 5, 5);
+        bag.insets = new Insets(10, 10, 10, 10);
         bag.fill = GridBagConstraints.HORIZONTAL;
 
         bag.gridx = 0;
@@ -118,6 +149,11 @@ public class Fenetre extends JFrame implements ActionListener {
         bag.gridwidth = 2;
         action.add(refresh, bag);
         action.setBackground(new Color(0, 153, 255));
+
+        bag.gridx = 0;
+        bag.gridy = 8;
+        bag.gridwidth = 2;
+        action.add(new JSeparator(), bag);
 
 
         refresh.addActionListener(this);
